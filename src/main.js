@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { Quasar, Notify } from 'quasar';
+
 import quasarLang from 'quasar/lang/zh-TW';
 
 // Import icon libraries
@@ -21,5 +22,6 @@ app.use(Quasar, {
   plugins: { Notify },
   lang: quasarLang,
 });
+// app.use(axios)
 
 app.mount('#app');

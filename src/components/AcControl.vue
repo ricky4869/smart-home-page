@@ -1,14 +1,33 @@
 <script setup>
-import { watch } from 'vue';
+import { watch, ref, reactive } from 'vue';
 import { useAirConditionerStore } from '@/stores/AirConditioner';
+import axios from "axios"
 
+// axios.create({
+//   headers: { 'content-type': 'application/x-www-form-urlencoded' },
+// })
 const airConditioner = useAirConditionerStore();
+const apiUrl = ref('https://api.thingspeak.com/update')
+const apiKey = ref('L5E4PBI15XH5L0S5')
+
+const writeKey = ref('L5E4PBI15XH5L0S5')
+const readKey = ref('W555MP54SDJP3N0O')
+const channelId = ref('1669841')
+console.log(import.meta.env.API_URL)
 watch(
   () => airConditioner.isOpen,
   () => {
     airConditioner.setStatus('isOpen', airConditioner.isOpen);
+    axios.get(apiUrl.value, {api_key:writeKey.value, field1:airConditioner.isOpen}, {
+    headers:{
+        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+    }
+}).then(resp => {
+      console.log(resp.data)
+    })
   },
 );
+
 
 // const value = ref(true);
 </script>

@@ -2,8 +2,11 @@
 import AcControl from '@/components/AcControl.vue';
 import AcDashboard from '@/components/AcDashboard.vue';
 import { useAirConditionerStore } from '@/stores/AirConditioner';
+import axios from "axios"
 
 const airConditioner = useAirConditionerStore();
+
+console.log(axios)  
 </script>
 
 <template>
